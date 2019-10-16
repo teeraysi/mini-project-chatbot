@@ -17,16 +17,18 @@ app.use(bodyParser.json());
 app.post('/webhook', (req, res) => {
 
   let reply_token = req.body.events[0].replyToken;
-  reply(res, reply_token);
+  const msg = req.body.events[0].message.text;
+  
+  reply(res, reply_token, msg);
 
-  res.json('Welcome').sendStatus(200).end();
+  res.sendStatus(200);
 });
 
 app.listen(port, function () {
   console.log(`${'\u2705'}  Server starting http://localhost:${port}`);
 });
 
-function reply(res, reply_token) {
+function reply(res, reply_token, msg) {
   const headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + channel_access_token
@@ -37,10 +39,7 @@ function reply(res, reply_token) {
     messages: [
       {
         type: 'text',
-        text: 'Hello'
-      }, {
-        type: 'text',
-        text: 'How are you?'
+        text: 'Echo: ' + msg
       }
     ]
   });
