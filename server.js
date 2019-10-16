@@ -17,22 +17,22 @@ app.use(bodyParser.json());
 app.post('/webhook', (req, res) => {
 
   let reply_token = req.body.events[0].replyToken;
-  reply(reply_token);
+  reply(res, reply_token);
 
-  res.sendStatus(200);
+  res.json('Welcome').sendStatus(200).end();
 });
 
 app.listen(port, function () {
   console.log(`${'\u2705'}  Server starting http://localhost:${port}`);
 });
 
-function reply(reply_token) {
-  let headers = {
+function reply(res, reply_token) {
+  const headers = {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + channel_access_token
   };
 
-  let body = JSON.stringify({
+  const body = JSON.stringify({
     replyToken: reply_token,
     messages: [
       {
@@ -47,10 +47,10 @@ function reply(reply_token) {
 
   request.post({
     url: 'https://api.line.me/v2/bot/message/reply',
-    headers,
-    body
+    headers: headers,
+    body: body
   }, (err, res, body) => {
-    console.log('status = ' + res.statusCode);
+    console.log('status = ' + res.statusCode);    
   });
 
 }
