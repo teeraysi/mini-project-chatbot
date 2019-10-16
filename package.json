@@ -1,0 +1,23 @@
+{
+  "name": "mini-project-chatbot",
+  "version": "1.0.0",
+  "description": "create mini project for run chatbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teeraysi/mini-project-chatbot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teeraysi/mini-project-chatbot/issues"
+  },
+  "homepage": "https://github.com/teeraysi/mini-project-chatbot#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
